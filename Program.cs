@@ -149,7 +149,15 @@ namespace bf2mipsv2
             using (var fileReader = new StreamReader(arg.filename)) {
                 prog = processBf(fileReader);
             }
-            Console.WriteLine(prog);
+
+            if (arg.outputname == null) {
+                Console.Write(prog);
+            } else {
+                using (var fileWriter = new StreamWriter(arg.outputname, false)) {
+                    fileWriter.Write(prog);
+                }
+            }
+
         }
     }
 }
